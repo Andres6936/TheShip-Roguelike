@@ -2,6 +2,8 @@
 #define RT_CHARACTER 1
 
 /* define primary stats */
+#include "Direction.h"
+
 #define STR 0
 #define CUN 1
 #define INT 2
@@ -40,6 +42,14 @@
 #define HIG 5
 #define ENG 6
 
+typedef struct
+{
+    int x;
+    int y;
+    char glyph;
+
+} Player;
+
 /* function prototypes for PC generation */
 
 void roll_pc ( int world, int regiment );
@@ -54,7 +64,12 @@ void print_status();
 
 void gen_secondary_stats();
 
-void print_pc();
+/**
+ * @brief Draw the player.
+ */
+void DrawPlayer( );
+
+void Walk( Direction direction );
 
 int move_pc ( int x, int y );
 

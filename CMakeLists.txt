@@ -9,7 +9,9 @@ Add_Executable(TheShip
         Source/Screens.c
         Source/Character.c
         Source/Dice.c
-        Source/Engine.c)
+        Source/Engine.c
+        Source/Tile.c
+        Source/Event.c)
 
 # Load and link the library BearLibTerminal
 Target_Link_Libraries(TheShip BearLibTerminal)

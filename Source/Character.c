@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <string.h>
 
+Player player = {5, 5, '@'};
+
 /*
  * -primary stats
  * max. stat : 50
@@ -88,33 +90,33 @@ void ShowStatsCharacter( )
 {
     // NOTE: Is necessary verify that the integers no have more two digits.
 
-    char strong[3];
-    char cunning[3];
-    char intelligence[3];
-    char constitution[3];
-    char vision[3];
-    char speed[3];
-    char chakra[3];
+    char strong[31];
+    char cunning[31];
+    char intelligence[31];
+    char constitution[31];
+    char vision[31];
+    char speed[31];
+    char chakra[31];
 
     // Convert the integers to string for show in terminal
 
-    sprintf(strong, "%2d", char_stats[STR]);
-    sprintf(cunning, "%2d", char_stats[CUN]);
-    sprintf(intelligence, "%2d", char_stats[INT]);
-    sprintf(constitution, "%2d", char_stats[CON]);
-    sprintf(vision, "%2d", char_stats[VIS]);
-    sprintf(speed, "%2d", char_stats[SPE]);
-    sprintf(chakra, "%2d", char_stats[CHA]);
+    sprintf(strong,       "[color=orange]STR:[/color] %2d", char_stats[STR]);
+    sprintf(cunning,      "[color=orange]CUN:[/color] %2d", char_stats[CUN]);
+    sprintf(intelligence, "[color=orange]INT:[/color] %2d", char_stats[INT]);
+    sprintf(constitution, "[color=orange]CON:[/color] %2d", char_stats[CON]);
+    sprintf(vision,       "[color=orange]VIS:[/color] %2d", char_stats[VIS]);
+    sprintf(speed,        "[color=orange]SPE:[/color] %2d", char_stats[SPE]);
+    sprintf(chakra,       "[color=orange]CHA:[/color] %2d", char_stats[CHA]);
 
     terminal_color(color_from_name("white"));
 
-    terminal_printf(75, 3, strong);
-    terminal_printf(75, 5, cunning);
-    terminal_printf(75, 7, intelligence);
-    terminal_printf(75, 9, constitution);
-    terminal_printf(75, 11, vision);
-    terminal_printf(75, 13, speed);
-    terminal_printf(75, 15, chakra);
+    terminal_printf(70, 3, strong);
+    terminal_printf(70, 5, cunning);
+    terminal_printf(70, 7, intelligence);
+    terminal_printf(70, 9, constitution);
+    terminal_printf(70, 11, vision);
+    terminal_printf(70, 13, speed);
+    terminal_printf(70, 15, chakra);
 }
 
 void ShowStatusGuns( )
@@ -160,6 +162,17 @@ void ShowStatusGuns( )
     sprintf(damageI, "%2d", sec_stats[DG]);
     sprintf(damageII, "%2d", sec_stats[DG]);
 
+
+    terminal_color(color_from_name("orange"));
+
+    terminal_printf(24, 20, "L:   /");
+    terminal_printf(34, 20, "C:   /");
+    terminal_printf(44, 20, "A:   /");
+    terminal_printf(54, 20, "SPD:");
+    terminal_printf(64, 20, "DMG:");
+
+    terminal_printf(14, 22, "SRW:");
+    terminal_printf(14, 23, "LRW:");
 
     terminal_color(color_from_name("white"));
 
@@ -210,99 +223,30 @@ void gen_secondary_stats()
     sec_stats[DG] = sec_stats[SP] + char_stats[STR] + char_stats[VIS];
 }
 
-
-/* write pc to present location */
-/* also writes last sq. */
-void print_pc()
+void DrawPlayer( )
 {
-    mapchar last_loc;
-    int lastx, lasty;
-    int onum;
-
-    /* present location */
-    WriteChar( location[ 0 ], location[ 1 ], '@', color_from_name("red") );
-
-    /* last square */
-    lastx = location[2];
-    lasty = location[3];
-
-    /* this is FUCKED */
-    onum = object_present ( lev1, lastx, lasty );
-    if ( onum != -1 )
-    {
-        WriteChar( location[ 2 ], location[ 3 ], get_look( lev1, onum ), color_from_name("orange"));
-    }
-    else
-    {
-        last_loc = curr_level[lastx][lasty];
-        WriteChar( location[ 2 ], location[ 3 ], last_loc.symbol, color_from_name("orange") );
-    }
+    terminal_color(color_from_name("orange"));
+    terminal_put(player.x, player.y, player.glyph);
 }
 
-/*
- * shift location by x,y
- * -returns code of any obstacles/monster
- * 0 : don't move; wall
- * 1 : OK to move normally; empty square
- * 2 : object on floor
- * 3 : a closed door
- */
-int move_pc ( int x, int y )
+void Walk( Direction direction )
 {
-    int xfloc =  location[0] + x;
-    int yfloc =  location[1] + y;
-    /* get symbol at intended location */
-    int iloc = terminal_pick(xfloc, yfloc, 1);
-
-    /* a wall */
-    if ( iloc == '#' )
+    if (direction == NORTH)
     {
-        print_msg ( "That's a wall." );
-        return 0;
+        player.y--;
     }
-
-    /* a closed door */
-    if ( iloc == '+' )
+    else if (direction == SOUTH)
     {
-        print_msg ( "You bump into the door." );
-        return 3;
+        player.y++;
     }
-
-    /* an object */
-    if ( iloc == '(' || iloc == ')' || iloc == '/' || iloc == '\\' || iloc == '%' || iloc == '$' || iloc == '!' || iloc == '?' )
+    else if (direction == WEST)
     {
-        char *namebuf;
-        if ( lev1 != NULL )
-        {
-            char *obj_name = get_oname ( lev1, get_unum ( lev1, xfloc, yfloc ) );
-            char obj_msg[30] = "You see a ";
-            char *obj_end = ".";
-            strcat ( obj_msg, obj_name );
-            namebuf = ( char * ) strcat ( obj_msg, obj_end );
-        }
-        else
-        {
-            namebuf = NULL;
-        }
-        print_msg ( namebuf );
-        location[2] = location[0];
-        location[3] = location[1];
-        location[0] += x;
-        location[1] += y;
-        return 2;
+        player.x--;
     }
-    else
+    else if (direction == EAST)
     {
-        /* clear message bar on movement */
-        print_msg ( "" );
+        player.x++;
     }
-
-    /* if OK, go ahead and change location */
-    location[2] = location[0];
-    location[3] = location[1];
-    location[0] += x;
-    location[1] += y;
-    return 1;
 }
 
 /* returns unum of item picked up */

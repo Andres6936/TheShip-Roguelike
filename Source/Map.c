@@ -13,9 +13,6 @@ mapchar mapmap[8];
 
 object *lev1 = NULL;
 
-/* an 80x25 screen */
-mapchar curr_level[25][80] = {};
-
 // Dimension of dungeon (map).
 const unsigned short DUNGEON_COLUMN = 65;
 const unsigned short DUNGEON_ROW = 19;
@@ -71,36 +68,6 @@ void CreateDungeon( )
         for( int y = 0; y < DUNGEON_ROW; y++)
         {
             dungeon[x][y] = WALL_TILE;
-        }
-    }
-}
-
-void print_map()
-{
-//    draw_lobjects();
-}
-
-
-/* draw the level objects to the screen */
-void draw_lobjects()
-{
-
-    int obj_num = 0;
-    int numo = object_number ( lev1 );
-    char num_msg[20];
-
-    sprintf ( num_msg, "Number: %i", numo );
-
-    if ( lev1 != NULL )
-    {
-        for ( int c=0; obj_num < object_number ( lev1 ); obj_num++ )
-        {
-            int xloc = get_xloc ( lev1, obj_num );
-            int yloc = get_yloc ( lev1, obj_num );
-            char sym = get_look ( lev1, obj_num );
-            int col = get_color ( lev1, obj_num );
-
-            WriteChar( xloc, yloc, sym, color_from_name("orange") );
         }
     }
 }

@@ -1,4 +1,4 @@
-// Include file only once
+// Only include file once
 #pragma once
 
 void ShowTitleScreen( );

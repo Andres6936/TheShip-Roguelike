@@ -131,38 +131,12 @@ int ShowRegimentChoice( )
 /* create main game screen */
 void ShowMainScreen( )
 {
-
-    /* Stuff that doesn't ever change */
     terminal_clear();
 
-    terminal_color(color_from_name("orange"));
-
-    // Primary Stats
-    terminal_printf(70, 3, "STR:");
-    terminal_printf(70, 5, "CUN:");
-    terminal_printf(70, 7, "INT:");
-    terminal_printf(70, 9, "CON:");
-    terminal_printf(70, 11, "VIS:");
-    terminal_printf(70, 13, "SPE:");
-    terminal_printf(70, 15, "CHA:");
-
-    // Bottom Status Line
-    terminal_printf(24, 20, "L:   /");
-    terminal_printf(34, 20, "C:   /");
-    terminal_printf(44, 20, "A:   /");
-    terminal_printf(54, 20, "SPD:");
-    terminal_printf(64, 20, "DMG:");
-
-
-    // Top Status Line
-    terminal_printf(14, 22, "SRW:");
-    terminal_printf(14, 23, "LRW:");
-
-    /* print stuff that changes */
     ShowStatsCharacter( );
     ShowStatusGuns( );
-    print_map();
-//    print_pc();
+    DrawDungeon();
+    DrawPlayer( );
 
     terminal_refresh();
 }
