@@ -1,4 +1,5 @@
 #include "Include/Map.h"
+#include "Include/Tile.h"
 #include "Include/Engine.h"
 #include "Include/Object.h"
 #include "Include/Logger.h"
@@ -14,6 +15,14 @@ object *lev1 = NULL;
 
 /* an 80x25 screen */
 mapchar curr_level[25][80] = {};
+
+// Dimension of dungeon (map).
+const unsigned short DUNGEON_COLUMN = 65;
+const unsigned short DUNGEON_ROW = 19;
+
+// NOTE: Error to used const in dungeon.
+// Represent of map.
+Tile dungeon[65][19] = {};
 
 extern int location[];
 
@@ -52,27 +61,23 @@ void set_mapdrawing_chars()
     mapmap[ODOOR] = mc;
 }
 
-
-/* 'blank' map array */
-void init_screen_array()
+void CreateDungeon( )
 {
+    // Tile for defect for the map.
+    Tile WALL_TILE = {'.'};
 
-    int x,y;
-
-    for ( x = 0; x < 80; x++ )
+    for( int x = 0; x < DUNGEON_COLUMN; x++)
     {
-        for ( y = 0; y < 25; y++ )
+        for( int y = 0; y < DUNGEON_ROW; y++)
         {
-            curr_level[y][x] = mapmap[BLANK];
+            dungeon[x][y] = WALL_TILE;
         }
     }
 }
 
 void print_map()
 {
-
-    draw_lfeats();
-    draw_lobjects();
+//    draw_lobjects();
 }
 
 
@@ -171,18 +176,17 @@ int open_door()
     }
 }
 
-/* draw the level from the curr_level array */
-void draw_lfeats()
+void DrawDungeon( )
 {
-    int x,y;
-    for ( x = 0; x < 25; x++ )
+    // Clear the area of map only.
+    terminal_clear_area(0, 0, DUNGEON_COLUMN, DUNGEON_ROW);
+
+    // Draw the dungeon.
+    for ( int x = 0; x < DUNGEON_COLUMN; x++ )
     {
-        for ( y = 0; y < 80; y++ )
+        for ( int y = 0; y < DUNGEON_ROW; y++ )
         {
-            if ( curr_level[x][y].unum != mapmap[BLANK].unum )
-            {
-                WriteChar( x, y, curr_level[ x ][ y ].symbol, color_from_name("orange") );
-            }
+            terminal_put(x, y, dungeon[x][y].glyph);
         }
     }
 }

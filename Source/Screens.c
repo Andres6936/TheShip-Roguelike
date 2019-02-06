@@ -161,7 +161,7 @@ void ShowMainScreen( )
     /* print stuff that changes */
     ShowStatsCharacter( );
     ShowStatusGuns( );
-//    print_map();
+    print_map();
 //    print_pc();
 
     terminal_refresh();

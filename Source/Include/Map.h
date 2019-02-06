@@ -9,6 +9,10 @@ typedef struct mapchar
     int  color;
 } mapchar;
 
+// Dimension of dungeon (map).
+extern const unsigned short DUNGEON_COLUMN;
+extern const unsigned short DUNGEON_ROW;
+
 /* defines for map square types (mapchar struct) */
 #define BLANK 0
 #define WALL  1
@@ -25,17 +29,21 @@ void set_mapdrawing_chars();
 
 void draw_lobjects();
 
-void init_screen_array();
+void CreateDungeon( );
 
 void print_map();
 
 /* returns 1 if door is there, 0 otherwise */
 int open_door();
 
-/*
- * draw the level features; current level
- * features are held in a global array
+/**
+ * @brief Draw the dungeon (map).
+ *
+ * Clear the area of map only and next draw the dungeon (map).
+ * @note Require refresh the terminal for show to user.
+ *
+ * @pre Dungeon has been initialize.
  */
-void draw_lfeats();
+void DrawDungeon( );
 
 #endif

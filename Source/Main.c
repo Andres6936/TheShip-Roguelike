@@ -8,6 +8,14 @@
 #include "Include/Screens.h"
 #include "Include/BearLibTerminal.h"
 
+/*
+ * References:
+ * http://www.sinergiaderol.com/sumario.html
+ * https://es.wikipedia.org/wiki/Categor%C3%ADa:T%C3%A9rminos_de_rol
+ * https://es.wikipedia.org/wiki/Categor%C3%ADa:Juegos_de_rol_de_ciencia_ficci%C3%B3n
+ * https://es.wikipedia.org/wiki/Categor%C3%ADa:Sistemas_de_juego_de_rol
+ */
+
 int main ( int argc, char *argv[] )
 {
     char wmsg[] = "You're inside.";
@@ -18,7 +26,7 @@ int main ( int argc, char *argv[] )
     InitEngine();
     InitObjects();
     set_mapdrawing_chars();
-    init_screen_array();
+    CreateDungeon( );
 
     WriteLogger ( "Going to title screen" );
     ShowTitleScreen( );
@@ -137,6 +145,8 @@ int main ( int argc, char *argv[] )
             break;
         }
 
+
+        DrawDungeon();
         terminal_refresh();
     }
 
