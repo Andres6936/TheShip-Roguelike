@@ -82,6 +82,8 @@ int main ( int argc, char *argv[] )
             show_inventory();
         }
 
+        ShowStatsCharacter( );
+        ShowStatusGuns( );
         DrawDungeon();
         DrawPlayer();
         terminal_refresh();

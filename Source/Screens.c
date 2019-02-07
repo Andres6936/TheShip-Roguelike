@@ -86,10 +86,9 @@ int ShowRegimentChoice( )
     terminal_printf(5, 4, "[color=orange]C[/color]ommando");
     terminal_printf(5, 6, "[color=orange]M[/color]edic");
     terminal_printf(5, 8, "[color=orange]S[/color]apper");
-    terminal_printf(5, 10, "Sc[color=orange]o[/color]ut");
-    terminal_printf(5, 12, "[color=orange]T[/color]echnician");
-    terminal_printf(5, 14, "[color=orange]H[/color]igh Command");
-    terminal_printf(5, 16, "[color=orange]E[/color]ngineer");
+    terminal_printf(5, 10, "[color=orange]T[/color]echnician");
+    terminal_printf(5, 12, "[color=orange]H[/color]igh Command");
+    terminal_printf(5, 14, "[color=orange]E[/color]ngineer");
 
     terminal_refresh();
 
@@ -101,27 +100,23 @@ int ShowRegimentChoice( )
         {
             return COM;
         }
-        if ( c == TK_M )
+        else if ( c == TK_M )
         {
             return MED;
         }
-        if ( c == TK_S )
+        else if ( c == TK_S )
         {
             return SAP;
         }
-        if ( c == TK_O )
-        {
-            return SCO;
-        }
-        if ( c == TK_T )
+        else if ( c == TK_T )
         {
             return TEC;
         }
-        if ( c == TK_H )
+        else if ( c == TK_H )
         {
             return HIG;
         }
-        if ( c == TK_E )
+        else if ( c == TK_E )
         {
             return ENG;
         }
@@ -133,12 +128,34 @@ void ShowMainScreen( )
 {
     terminal_clear();
 
+    ShowBorderLine();
     ShowStatsCharacter( );
     ShowStatusGuns( );
     DrawDungeon();
     DrawPlayer( );
 
     terminal_refresh();
+}
+
+void ShowBorderLine()
+{
+    // Border line for horizontal
+    for (int i = 0; i < 80; i++)
+    {
+        // Representation of character 205 in encoding cp437.
+        terminal_put(i, 19, 205);
+    }
+
+    // Border line for vertical
+    for (int j = 0; j < 19; j++)
+    {
+        // Representation of character 186 in encoding cp437.
+        terminal_put(65, j, 186);
+    }
+
+    // Border line in the intercept with the horizontal and vertical.
+    // Representation of character 202 in encoding cp437.
+    terminal_put(65, 19, 202);
 }
 
 /* print a message to the 2-line message bar at top of screen */
