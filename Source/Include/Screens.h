@@ -1,6 +1,9 @@
 // Only include file once
 #pragma once
 
+extern const short VIEW_DUNGEON_WIDTH;
+extern const short VIEW_DUNGEON_HEIGHT;
+
 int ShowWorldChoice( );
 
 int ShowRegimentChoice( );

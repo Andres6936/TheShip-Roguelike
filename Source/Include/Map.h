@@ -10,8 +10,8 @@ typedef struct mapchar
 } mapchar;
 
 // Dimension of dungeon (map).
-extern const unsigned short DUNGEON_COLUMN;
-extern const unsigned short DUNGEON_ROW;
+extern const unsigned short DUNGEON_WIDTH;
+extern const unsigned short DUNGEON_HEIGHT;
 
 /* defines for map square types (mapchar struct) */
 #define BLANK 0

@@ -14,8 +14,8 @@ mapchar mapmap[8];
 object *lev1 = NULL;
 
 // Dimension of dungeon (map).
-const unsigned short DUNGEON_COLUMN = 65;
-const unsigned short DUNGEON_ROW = 19;
+const unsigned short DUNGEON_WIDTH = 65;
+const unsigned short DUNGEON_HEIGHT = 19;
 
 // NOTE: Error to used const in dungeon.
 // Represent of map.
@@ -63,82 +63,11 @@ void CreateDungeon( )
     // Tile for defect for the map.
     Tile WALL_TILE = {'.'};
 
-    for( int x = 0; x < DUNGEON_COLUMN; x++)
+    for( int x = 0; x < DUNGEON_WIDTH; x++)
     {
-        for( int y = 0; y < DUNGEON_ROW; y++)
+        for( int y = 0; y < DUNGEON_HEIGHT; y++)
         {
             dungeon[x][y] = WALL_TILE;
-        }
-    }
-}
-
-/* open a door */
-int open_door()
-{
-
-    int doorxloc, dooryloc;
-    char loc_char;
-
-    print_msg ( "Which direction?" );
-
-    for ( ;; )
-    {
-        int c = terminal_read();
-        int no_dir = 1;
-
-        if ( c == 'h' )
-        {
-            doorxloc = location[0];
-            dooryloc = location[1] - 1;
-            no_dir = 0;
-        }
-        if ( c == 'j' )
-        {
-            doorxloc = location[0] + 1;
-            dooryloc = location[1];
-            no_dir = 0;
-        }
-        if ( c == 'k' )
-        {
-            doorxloc = location[0] - 1;
-            dooryloc = location[1];
-            no_dir = 0;
-        }
-        if ( c == 'l' )
-        {
-            doorxloc = location[0];
-            dooryloc = location[1] + 1;
-            no_dir = 0;
-        }
-        if ( c == 'y' )
-        {
-            doorxloc = location[0] - 1;
-            dooryloc = location[1] - 1;
-            no_dir = 0;
-        }
-        if ( c == 'u' )
-        {
-            doorxloc = location[0] - 1;
-            dooryloc = location[1] + 1;
-            no_dir = 0;
-        }
-        if ( c == 'b' )
-        {
-            doorxloc = location[0] + 1;
-            dooryloc = location[1] - 1;
-            no_dir = 0;
-        }
-        if ( c == 'n' )
-        {
-            doorxloc = location[0] + 1;
-            dooryloc = location[1] + 1;
-            no_dir = 0;
-        }
-
-        if ( no_dir == 1 )
-        {
-            print_msg ( "Interesting direction..." );
-            return -1;
         }
     }
 }
@@ -146,12 +75,12 @@ int open_door()
 void DrawDungeon( )
 {
     // Clear the area of map only.
-    terminal_clear_area(0, 0, DUNGEON_COLUMN, DUNGEON_ROW);
+    terminal_clear_area(0, 0, VIEW_DUNGEON_WIDTH, VIEW_DUNGEON_HEIGHT);
 
     // Draw the dungeon.
-    for ( int x = 0; x < DUNGEON_COLUMN; x++ )
+    for ( int x = 0; x < VIEW_DUNGEON_WIDTH; x++ )
     {
-        for ( int y = 0; y < DUNGEON_ROW; y++ )
+        for ( int y = 0; y < VIEW_DUNGEON_HEIGHT; y++ )
         {
             terminal_put(x, y, dungeon[x][y].glyph);
         }

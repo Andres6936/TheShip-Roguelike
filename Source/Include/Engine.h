@@ -23,7 +23,7 @@
 
 void InitEngine ( void );
 
-void finish ( int );
+void ExitApplication( short );
 
 /**
  * @brief Write a character, 'c', to the co-ords (x,y) with colour 'color'.
@@ -36,5 +36,3 @@ void finish ( int );
 void WriteChar( int x, int y, char c, color_t color );
 
 void write_string ( int x, int y, char *s, color_t color );
-
-void write_line ( int x, int y, int length, char c, color_t color );

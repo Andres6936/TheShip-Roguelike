@@ -6,6 +6,9 @@
 
 #include <stdbool.h>
 
+const short VIEW_DUNGEON_WIDTH = 65;
+const short VIEW_DUNGEON_HEIGHT = 19;
+
 /* title screen */
 void ShowTitleScreen( )
 {
@@ -32,7 +35,7 @@ void ShowTitleScreen( )
         else if (key == TK_CLOSE)
         {
             running = false;
-            finish(0);
+            ExitApplication( 0 );
         }
     }
 }
@@ -70,7 +73,7 @@ int ShowWorldChoice( )
         }
         else if (c == TK_CLOSE)
         {
-            finish(0);
+            ExitApplication( 0 );
         }
     }
 }

@@ -64,24 +64,6 @@ int main ( int argc, char *argv[] )
 
         HandlerEvent(key);
 
-        /* open a door */
-        if ( key == TK_O )
-        {
-            open_door();
-        }
-
-        /* pick up objects from the floor */
-        if ( key == TK_COMMA )
-        {
-            get_from_flr();
-        }
-
-        /* Inventory screen */
-        if ( key == TK_I )
-        {
-            show_inventory();
-        }
-
         ShowStatsCharacter( );
         ShowStatusGuns( );
         DrawDungeon();
@@ -89,7 +71,7 @@ int main ( int argc, char *argv[] )
         terminal_refresh();
     }
 
-    finish ( 0 );
+    ExitApplication( 0 );
 
     return 1;
 }
