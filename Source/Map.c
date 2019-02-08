@@ -14,12 +14,12 @@ mapchar mapmap[8];
 object *lev1 = NULL;
 
 // Dimension of dungeon (map).
-const unsigned short DUNGEON_WIDTH = 65;
-const unsigned short DUNGEON_HEIGHT = 19;
+const unsigned short DUNGEON_WIDTH = 100;
+const unsigned short DUNGEON_HEIGHT = 100;
 
 // NOTE: Error to used const in dungeon.
 // Represent of map.
-Tile dungeon[65][19] = {};
+Tile dungeon[100][100] = {};
 
 extern int location[];
 
@@ -77,12 +77,39 @@ void DrawDungeon( )
     // Clear the area of map only.
     terminal_clear_area(0, 0, VIEW_DUNGEON_WIDTH, VIEW_DUNGEON_HEIGHT);
 
-    // Draw the dungeon.
+    // Reference: http://www.roguebasin.com/index.php?title=Scrolling_map.
+    // Need draw the portion map visible and center to player.
+    // This called Scrolling map with center player.
+
+    int startX = player.x - (VIEW_DUNGEON_WIDTH / 2);
+    int startY = player.y - (VIEW_DUNGEON_HEIGHT / 2);
+
+    if (player.x < VIEW_DUNGEON_WIDTH / 2)
+    {
+        startX = 0;
+    }
+    else if (player.x >= DUNGEON_WIDTH - (VIEW_DUNGEON_WIDTH / 2))
+    {
+        startX = DUNGEON_WIDTH - VIEW_DUNGEON_WIDTH;
+    }
+
+    if (player.y < VIEW_DUNGEON_HEIGHT / 2)
+    {
+        startY = 0;
+    }
+    else if (player.y >= DUNGEON_HEIGHT - (VIEW_DUNGEON_HEIGHT / 2))
+    {
+        startY = DUNGEON_HEIGHT - VIEW_DUNGEON_HEIGHT;
+    }
+
     for ( int x = 0; x < VIEW_DUNGEON_WIDTH; x++ )
     {
         for ( int y = 0; y < VIEW_DUNGEON_HEIGHT; y++ )
         {
-            terminal_put(x, y, dungeon[x][y].glyph);
+            terminal_put(x, y, dungeon[x + startX][y + startY].glyph);
         }
     }
+
+    // Draw the player.
+    terminal_put(player.x - startX, player.y - startY, player.glyph);
 }

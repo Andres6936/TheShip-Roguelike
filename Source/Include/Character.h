@@ -50,6 +50,8 @@ typedef struct
 
 } Player;
 
+extern Player player;
+
 /* function prototypes for PC generation */
 
 void roll_pc ( int world, int regiment );

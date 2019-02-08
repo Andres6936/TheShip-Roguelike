@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <string.h>
 
-Player player = {5, 5, '@'};
+Player player = {10, 10, '@'};
 
 /*
  * -primary stats
