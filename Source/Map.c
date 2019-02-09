@@ -72,6 +72,7 @@ void CreateDungeon( )
     }
 }
 
+// NOTE: Rename method.
 void DrawDungeon( )
 {
     // Clear the area of map only.
@@ -79,7 +80,7 @@ void DrawDungeon( )
 
     // Reference: http://www.roguebasin.com/index.php?title=Scrolling_map.
     // Need draw the portion map visible and center to player.
-    // This called Scrolling map with center player.
+    // This called Scrolling map.
 
     int startX = player.x - (VIEW_DUNGEON_WIDTH / 2);
     int startY = player.y - (VIEW_DUNGEON_HEIGHT / 2);
@@ -110,6 +111,7 @@ void DrawDungeon( )
         }
     }
 
-    // Draw the player.
+    // Draw the player in the center.
+    // Exist an exception and is when the player is in the edge of map.
     terminal_put(player.x - startX, player.y - startY, player.glyph);
 }

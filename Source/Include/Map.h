@@ -37,12 +37,15 @@ void print_map();
 int open_door();
 
 /**
- * @brief Draw the dungeon (map).
+ * @brief Draw the dungeon (map) and the player.
  *
- * Clear the area of map only and next draw the dungeon (map).
+ * Clear the area of map only and next draw the dungeon (map) and player.
+ * This method use the algorithm 'Scrolling Map' for draw the dungeon (map)
+ * and center the player in the screen.
  * @note Require refresh the terminal for show to user.
  *
  * @pre Dungeon has been initialize.
+ * @post Dungeon and player has been draw.
  */
 void DrawDungeon( );
 
