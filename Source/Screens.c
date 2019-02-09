@@ -135,7 +135,6 @@ void ShowMainScreen( )
     ShowStatsCharacter( );
     ShowStatusGuns( );
     DrawDungeon();
-    DrawPlayer( );
 
     terminal_refresh();
 }

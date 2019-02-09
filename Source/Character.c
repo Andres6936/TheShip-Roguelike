@@ -223,12 +223,6 @@ void gen_secondary_stats()
     sec_stats[DG] = sec_stats[SP] + char_stats[STR] + char_stats[VIS];
 }
 
-void DrawPlayer( )
-{
-    terminal_color(color_from_name("orange"));
-    terminal_put(player.x, player.y, player.glyph);
-}
-
 void Walk( Direction direction )
 {
     if (direction == NORTH)
