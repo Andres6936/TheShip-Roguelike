@@ -76,7 +76,7 @@ void CreateDungeon( )
 void DrawDungeon( )
 {
     // Clear the area of map only.
-    terminal_clear_area(0, 0, VIEW_DUNGEON_WIDTH, VIEW_DUNGEON_HEIGHT);
+	TerminalClearArea(0, 0, VIEW_DUNGEON_WIDTH, VIEW_DUNGEON_HEIGHT);
 
     // Reference: http://www.roguebasin.com/index.php?title=Scrolling_map.
     // Need draw the portion map visible and center to player.

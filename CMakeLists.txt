@@ -1,5 +1,5 @@
 Cmake_Minimum_Required(VERSION 3.8)
-Project(TheShip C)
+Project(TheShip CXX)
 
 # Content Package Manager
 INCLUDE(CMakeModules/CPM.cmake)
@@ -11,16 +11,16 @@ CPMAddPackage(
 )
 
 Add_Executable(TheShip
-        Source/Main.c
-        Source/Logger.c
-        Source/Map.c
-        Source/Object.c
-        Source/Screens.c
-        Source/Character.c
-        Source/Dice.c
-        Source/Engine.c
-        Source/Tile.c
-        Source/Event.c)
+        Source/Main.cpp
+        Source/Logger.cpp
+        Source/Map.cpp
+        Source/Object.cpp
+        Source/Screens.cpp
+        Source/Character.cpp
+        Source/Dice.cpp
+        Source/Engine.cpp
+        Source/Tile.cpp
+        Source/Event.cpp)
 
 # Load and link the library BearLibTerminal
 Target_Link_Libraries(TheShip PRIVATE BearLibTerminal)

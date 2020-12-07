@@ -45,7 +45,7 @@ int object_present ( object *olist_ptr, int x, int y );
 
 void InitObjects();
 
-void gen_sinv ( int class, int gang );
+void gen_sinv ( int _class, int gang );
 
 void show_inventory();
 

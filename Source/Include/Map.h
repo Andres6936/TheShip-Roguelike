@@ -22,9 +22,6 @@ extern const unsigned short DUNGEON_HEIGHT;
 #define CDOOR 5
 #define ODOOR 6
 
-
-enum Direction {N, NE, E, SE, S, SW, W, NW};
-
 void set_mapdrawing_chars();
 
 void draw_lobjects();

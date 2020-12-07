@@ -40,13 +40,13 @@ extern object *lev1;
 extern mapchar curr_level[25][80];
 
 /* roll the PCs starting stats; */
-void roll_pc ( int class, int regiment )
+void roll_pc ( int _class, int regiment )
 {
     int i;
     /* array of how to modify the RNG's initial rolls */
     static int mod_stats[7] = {0};
 
-    if ( class == EAR )
+    if ( _class == EAR )
     {
         mod_stats[STR] = -3;
         mod_stats[CUN] = 0;
@@ -56,7 +56,7 @@ void roll_pc ( int class, int regiment )
         mod_stats[SPE] = 0;
         mod_stats[CHA] = 0;
     }
-    if ( class == NEW )
+    if ( _class == NEW )
     {
         mod_stats[STR] = 3;
         mod_stats[CUN] = 1;
@@ -66,7 +66,7 @@ void roll_pc ( int class, int regiment )
         mod_stats[SPE] = 0;
         mod_stats[CHA] = -2;
     }
-    if ( class == SPA )
+    if ( _class == SPA )
     {
         mod_stats[STR] = -3;
         mod_stats[CUN] = 1;
@@ -247,7 +247,7 @@ void Walk( Direction direction )
 int get_from_flr()
 {
     object *prev_obj_ptr, *current_obj_ptr;
-    const char obj_msg[30] = "You pick up the ";
+    char obj_msg[30] = "You pick up the ";
 
     if ( lev1 == NULL )
     {
