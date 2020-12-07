@@ -4,7 +4,7 @@
 #include "Include/Character.h"
 #include "Include/Engine.h"
 #include "Include/Screens.h"
-#include "Include/BearLibTerminal.h"
+#include "BearLibTerminal/BearLibTerminal.hpp"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -201,22 +201,22 @@ void show_inventory()
     int equip_present[7] = {0};
     object *prev_obj_ptr, *current_obj_ptr;
 
-    terminal_clear();
-    write_string ( 0,0,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",color_from_name("blue") );
-    write_string ( 0,35,"INVENTORY",color_from_name("red") );
-    write_string ( 0,44,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",color_from_name("blue") );
+    TerminalClear();
+    write_string ( 0,0,">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",ColorFromName("blue") );
+    write_string ( 0,35,"INVENTORY",ColorFromName("red") );
+    write_string ( 0,44,"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<",ColorFromName("blue") );
 
     /* go through, print each item, then increment 'item_c'
        so you know where to start the next line */
     if ( etype_present ( SRW ) )
     {
-        write_string ( 2,1,"Melee Weapons",color_from_name("white") );
-        write_string ( 3,1,"-------------",color_from_name("white") );
+        write_string ( 2,1,"Melee Weapons",ColorFromName("white") );
+        write_string ( 3,1,"-------------",ColorFromName("white") );
 
         equip_present[SRW] = 1;
         item_c++;
 
-        write_string ( 3+item_c,1,equip[SRW].name,color_from_name("red") );
+        write_string ( 3+item_c,1,equip[SRW].name,ColorFromName("red") );
     }
     current_obj_ptr = inventory;
     if ( inventory !=  NULL )
@@ -225,11 +225,11 @@ void show_inventory()
         {
             if ( equip_present[SRW] != 1 )
             {
-                write_string ( 2,1,"Melee Weapons",color_from_name("white") );
-                write_string ( 3,1,"-------------",color_from_name("white") );
+                write_string ( 2,1,"Melee Weapons",ColorFromName("white") );
+                write_string ( 3,1,"-------------",ColorFromName("white") );
             }
             item_c++;
-            write_string ( 3+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+            write_string ( 3+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
         }
         else
         {
@@ -245,20 +245,20 @@ void show_inventory()
             {
                 if ( equip_present[SRW] != 1 )
                 {
-                    write_string ( 2,1,"Melee Weapons",color_from_name("white") );
-                    write_string ( 3,1,"-------------",color_from_name("white") );
+                    write_string ( 2,1,"Melee Weapons",ColorFromName("white") );
+                    write_string ( 3,1,"-------------",ColorFromName("white") );
                 }
                 item_c++;
-                write_string ( 3+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+                write_string ( 3+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
             }
         }
     }
 
     if ( etype_present ( LRW ) )
     {
-        write_string ( 5+item_c,1,"Ranged Weapons",color_from_name("white") );
-        write_string ( 6+item_c,1,"--------------",color_from_name("white") );
-        write_string ( 7+item_c,1,equip[LRW].name,color_from_name("red") );
+        write_string ( 5+item_c,1,"Ranged Weapons",ColorFromName("white") );
+        write_string ( 6+item_c,1,"--------------",ColorFromName("white") );
+        write_string ( 7+item_c,1,equip[LRW].name,ColorFromName("red") );
         item_c++;
     }
     if ( current_obj_ptr !=  NULL )
@@ -268,11 +268,11 @@ void show_inventory()
         {
             if ( equip_present[LRW] != 1 )
             {
-                write_string ( 5,1,"Ranged Weapons",color_from_name("white") );
-                write_string ( 6,1,"-------------",color_from_name("white") );
+                write_string ( 5,1,"Ranged Weapons",ColorFromName("white") );
+                write_string ( 6,1,"-------------",ColorFromName("white") );
             }
             item_c++;
-            write_string ( 6+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+            write_string ( 6+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
         }
         else
         {
@@ -288,20 +288,20 @@ void show_inventory()
             {
                 if ( equip_present[SRW] != 1 )
                 {
-                    write_string ( 5,1,"Ranged Weapons",color_from_name("white") );
-                    write_string ( 6,1,"-------------",color_from_name("white") );
+                    write_string ( 5,1,"Ranged Weapons",ColorFromName("white") );
+                    write_string ( 6,1,"-------------",ColorFromName("white") );
                 }
                 item_c++;
-                write_string ( 6+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+                write_string ( 6+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
             }
         }
     }
 
     if ( etype_present ( ARM ) )
     {
-        write_string ( 8+item_c,1,"Armour",color_from_name("white") );
-        write_string ( 9+item_c,1,"------",color_from_name("white") );
-        write_string ( 10+item_c,1,equip[ARM].name,color_from_name("red") );
+        write_string ( 8+item_c,1,"Armour",ColorFromName("white") );
+        write_string ( 9+item_c,1,"------",ColorFromName("white") );
+        write_string ( 10+item_c,1,equip[ARM].name,ColorFromName("red") );
         item_c++;
     }
     if ( current_obj_ptr !=  NULL )
@@ -311,11 +311,11 @@ void show_inventory()
         {
             if ( equip_present[LRW] != 1 )
             {
-                write_string ( 8,1,"Armour",color_from_name("white") );
-                write_string ( 9,1,"------",color_from_name("white") );
+                write_string ( 8,1,"Armour",ColorFromName("white") );
+                write_string ( 9,1,"------",ColorFromName("white") );
             }
             item_c++;
-            write_string ( 9+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+            write_string ( 9+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
         }
         else
         {
@@ -331,20 +331,20 @@ void show_inventory()
             {
                 if ( equip_present[SRW] != 1 )
                 {
-                    write_string ( 8,1,"Armour",color_from_name("white") );
-                    write_string ( 9,1,"------",color_from_name("white") );
+                    write_string ( 8,1,"Armour",ColorFromName("white") );
+                    write_string ( 9,1,"------",ColorFromName("white") );
                 }
                 item_c++;
-                write_string ( 9+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+                write_string ( 9+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
             }
         }
     }
 
     if ( etype_present ( HDA ) )
     {
-        write_string ( 11+item_c,1,"Headgear",color_from_name("white") );
-        write_string ( 12+item_c,1,"--------",color_from_name("white") );
-        write_string ( 13+item_c,1,equip[HDA].name,color_from_name("red") );
+        write_string ( 11+item_c,1,"Headgear",ColorFromName("white") );
+        write_string ( 12+item_c,1,"--------",ColorFromName("white") );
+        write_string ( 13+item_c,1,equip[HDA].name,ColorFromName("red") );
         item_c++;
     }
     if ( current_obj_ptr !=  NULL )
@@ -354,11 +354,11 @@ void show_inventory()
         {
             if ( equip_present[LRW] != 1 )
             {
-                write_string ( 11,1,"Headgear",color_from_name("white") );
-                write_string ( 12,1,"--------",color_from_name("white") );
+                write_string ( 11,1,"Headgear",ColorFromName("white") );
+                write_string ( 12,1,"--------",ColorFromName("white") );
             }
             item_c++;
-            write_string ( 12+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+            write_string ( 12+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
         }
         else
         {
@@ -374,20 +374,20 @@ void show_inventory()
             {
                 if ( equip_present[SRW] != 1 )
                 {
-                    write_string ( 11,1,"Headgear",color_from_name("white") );
-                    write_string ( 12,1,"--------",color_from_name("white") );
+                    write_string ( 11,1,"Headgear",ColorFromName("white") );
+                    write_string ( 12,1,"--------",ColorFromName("white") );
                 }
                 item_c++;
-                write_string ( 12+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+                write_string ( 12+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
             }
         }
     }
 
     if ( etype_present ( LGA ) )
     {
-        write_string ( 14+item_c,1,"Legwear",color_from_name("white") );
-        write_string ( 15+item_c,1,"-------",color_from_name("white") );
-        write_string ( 16+item_c,1,equip[LGA].name,color_from_name("red") );
+        write_string ( 14+item_c,1,"Legwear",ColorFromName("white") );
+        write_string ( 15+item_c,1,"-------",ColorFromName("white") );
+        write_string ( 16+item_c,1,equip[LGA].name,ColorFromName("red") );
         item_c++;
     }
     if ( current_obj_ptr !=  NULL )
@@ -397,11 +397,11 @@ void show_inventory()
         {
             if ( equip_present[LRW] != 1 )
             {
-                write_string ( 14,1,"Legwear",color_from_name("white") );
-                write_string ( 15,1,"-------",color_from_name("white") );
+                write_string ( 14,1,"Legwear",ColorFromName("white") );
+                write_string ( 15,1,"-------",ColorFromName("white") );
             }
             item_c++;
-            write_string ( 15+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+            write_string ( 15+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
         }
         else
         {
@@ -417,20 +417,20 @@ void show_inventory()
             {
                 if ( equip_present[SRW] != 1 )
                 {
-                    write_string ( 14,1,"Legwear",color_from_name("white") );
-                    write_string ( 15,1,"-------",color_from_name("white") );
+                    write_string ( 14,1,"Legwear",ColorFromName("white") );
+                    write_string ( 15,1,"-------",ColorFromName("white") );
                 }
                 item_c++;
-                write_string ( 15+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+                write_string ( 15+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
             }
         }
     }
 
     if ( etype_present ( FTA ) )
     {
-        write_string ( 17+item_c,1,"Footwear",color_from_name("white") );
-        write_string ( 18+item_c,1,"--------",color_from_name("white") );
-        write_string ( 19+item_c,1,equip[FTA].name,color_from_name("red") );
+        write_string ( 17+item_c,1,"Footwear",ColorFromName("white") );
+        write_string ( 18+item_c,1,"--------",ColorFromName("white") );
+        write_string ( 19+item_c,1,equip[FTA].name,ColorFromName("red") );
         item_c++;
     }
     if ( current_obj_ptr !=  NULL )
@@ -440,11 +440,11 @@ void show_inventory()
         {
             if ( equip_present[LRW] != 1 )
             {
-                write_string ( 17,1,"Footwear",color_from_name("white") );
-                write_string ( 18,1,"--------",color_from_name("white") );
+                write_string ( 17,1,"Footwear",ColorFromName("white") );
+                write_string ( 18,1,"--------",ColorFromName("white") );
             }
             item_c++;
-            write_string ( 18+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+            write_string ( 18+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
         }
         else
         {
@@ -460,20 +460,20 @@ void show_inventory()
             {
                 if ( equip_present[SRW] != 1 )
                 {
-                    write_string ( 17,1,"Footwear",color_from_name("white") );
-                    write_string ( 18,1,"--------",color_from_name("white") );
+                    write_string ( 17,1,"Footwear",ColorFromName("white") );
+                    write_string ( 18,1,"--------",ColorFromName("white") );
                 }
                 item_c++;
-                write_string ( 18+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+                write_string ( 18+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
             }
         }
     }
 
     if ( etype_present ( AMM ) )
     {
-        write_string ( 20+item_c,1,"Ammunition",color_from_name("white") );
-        write_string ( 21+item_c,1,"----------",color_from_name("white") );
-        write_string ( 22+item_c,1,equip[AMM].name,color_from_name("red") );
+        write_string ( 20+item_c,1,"Ammunition",ColorFromName("white") );
+        write_string ( 21+item_c,1,"----------",ColorFromName("white") );
+        write_string ( 22+item_c,1,equip[AMM].name,ColorFromName("red") );
         item_c++;
     }
     if ( current_obj_ptr !=  NULL )
@@ -483,11 +483,11 @@ void show_inventory()
         {
             if ( equip_present[LRW] != 1 )
             {
-                write_string ( 20,1,"Ammunition",color_from_name("white") );
-                write_string ( 21,1,"----------",color_from_name("white") );
+                write_string ( 20,1,"Ammunition",ColorFromName("white") );
+                write_string ( 21,1,"----------",ColorFromName("white") );
             }
             item_c++;
-            write_string ( 21+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+            write_string ( 21+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
         }
         else
         {
@@ -503,18 +503,18 @@ void show_inventory()
             {
                 if ( equip_present[SRW] != 1 )
                 {
-                    write_string ( 20,1,"Armmunition",color_from_name("white") );
-                    write_string ( 21,1,"-----------",color_from_name("white") );
+                    write_string ( 20,1,"Armmunition",ColorFromName("white") );
+                    write_string ( 21,1,"-----------",ColorFromName("white") );
                 }
                 item_c++;
-                write_string ( 21+item_c,1,current_obj_ptr->name,color_from_name("cyan") );
+                write_string ( 21+item_c,1,current_obj_ptr->name,ColorFromName("cyan") );
             }
         }
     }
 
     for ( ;; )
     {
-        int c = terminal_read();
+        int c = TerminalRead();
         if ( c == TK_B )
         {
             break;

@@ -5,7 +5,7 @@
 #include "Include/Logger.h"
 #include "Include/Screens.h"
 #include "Include/Character.h"
-#include "Include/BearLibTerminal.h"
+#include "BearLibTerminal/BearLibTerminal.hpp"
 
 #include <assert.h>
 
@@ -107,11 +107,11 @@ void DrawDungeon( )
     {
         for ( int y = 0; y < VIEW_DUNGEON_HEIGHT; y++ )
         {
-            terminal_put(x, y, dungeon[x + startX][y + startY].glyph);
+            TerminalPut(x, y, dungeon[x + startX][y + startY].glyph);
         }
     }
 
     // Draw the player in the center.
     // Exist an exception and is when the player is in the edge of map.
-    terminal_put(player.x - startX, player.y - startY, player.glyph);
+    TerminalPut(player.x - startX, player.y - startY, player.glyph);
 }

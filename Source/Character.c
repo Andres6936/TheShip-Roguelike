@@ -4,7 +4,7 @@
 #include "Include/Map.h"
 #include "Include/Screens.h"
 #include "Include/Dice.h"
-#include "Include/BearLibTerminal.h"
+#include "BearLibTerminal/BearLibTerminal.hpp"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -108,15 +108,15 @@ void ShowStatsCharacter( )
     sprintf(speed,        "[color=orange]SPE:[/color] %2d", char_stats[SPE]);
     sprintf(chakra,       "[color=orange]CHA:[/color] %2d", char_stats[CHA]);
 
-    terminal_color(color_from_name("white"));
+    TerminalColor(ColorFromName("white"));
 
-    terminal_printf(70, 3, strong);
-    terminal_printf(70, 5, cunning);
-    terminal_printf(70, 7, intelligence);
-    terminal_printf(70, 9, constitution);
-    terminal_printf(70, 11, vision);
-    terminal_printf(70, 13, speed);
-    terminal_printf(70, 15, chakra);
+    TerminalPrintF(70, 3, strong);
+    TerminalPrintF(70, 5, cunning);
+    TerminalPrintF(70, 7, intelligence);
+    TerminalPrintF(70, 9, constitution);
+    TerminalPrintF(70, 11, vision);
+    TerminalPrintF(70, 13, speed);
+    TerminalPrintF(70, 15, chakra);
 }
 
 void ShowStatusGuns( )
@@ -163,38 +163,38 @@ void ShowStatusGuns( )
     sprintf(damageII, "%2d", sec_stats[DG]);
 
 
-    terminal_color(color_from_name("orange"));
+    TerminalColor(ColorFromName("orange"));
 
-    terminal_printf(24, 20, "L:   /");
-    terminal_printf(34, 20, "C:   /");
-    terminal_printf(44, 20, "A:   /");
-    terminal_printf(54, 20, "SPD:");
-    terminal_printf(64, 20, "DMG:");
+    TerminalPrintF(24, 20, "L:   /");
+    TerminalPrintF(34, 20, "C:   /");
+    TerminalPrintF(44, 20, "A:   /");
+    TerminalPrintF(54, 20, "SPD:");
+    TerminalPrintF(64, 20, "DMG:");
 
-    terminal_printf(14, 22, "SRW:");
-    terminal_printf(14, 23, "LRW:");
+    TerminalPrintF(14, 22, "SRW:");
+    TerminalPrintF(14, 23, "LRW:");
 
-    terminal_color(color_from_name("white"));
+    TerminalColor(ColorFromName("white"));
 
     // Laser:
-    terminal_printf(26, 22, laserI);
-    terminal_printf(26, 23, laserII);
+    TerminalPrintF(26, 22, laserI);
+    TerminalPrintF(26, 23, laserII);
 
     // Cannon:
-    terminal_printf(36, 22, cannonI);
-    terminal_printf(36, 23, cannonII);
+    TerminalPrintF(36, 22, cannonI);
+    TerminalPrintF(36, 23, cannonII);
 
     // Armor:
-    terminal_printf(47, 22, armorI);
-    terminal_printf(47, 23, armorII);
+    TerminalPrintF(47, 22, armorI);
+    TerminalPrintF(47, 23, armorII);
 
     // Speed:
-    terminal_printf(59, 22, speedI);
-    terminal_printf(59, 23, speedII);
+    TerminalPrintF(59, 22, speedI);
+    TerminalPrintF(59, 23, speedII);
 
     // Damage:
-    terminal_printf(69, 22, damageI);
-    terminal_printf(69, 23, damageII);
+    TerminalPrintF(69, 22, damageI);
+    TerminalPrintF(69, 23, damageII);
 }
 
 /* generate initial secondary stats */

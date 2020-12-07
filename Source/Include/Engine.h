@@ -1,7 +1,7 @@
 // Include file only once
 #pragma once
 
-#include "BearLibTerminal.h"
+#include "BearLibTerminal/BearLibTerminal.hpp"
 
 /* color defines */
 #define RED     0

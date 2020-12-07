@@ -6,8 +6,8 @@
 #include "Include/Logger.h"
 #include "Include/Character.h"
 #include "Include/Screens.h"
-#include "Include/BearLibTerminal.h"
 #include "Include/Event.h"
+#include "BearLibTerminal/BearLibTerminal.hpp"
 
 /*
  * References:
@@ -54,7 +54,7 @@ int main ( int argc, char *argv[] )
 
     while ( true )
     {
-        int key = terminal_read();
+        int key = TerminalRead();
 
         // The user close the window.
         if ( key == TK_CLOSE )
@@ -67,7 +67,7 @@ int main ( int argc, char *argv[] )
         ShowStatsCharacter( );
         ShowStatusGuns( );
         DrawDungeon();
-        terminal_refresh();
+        TerminalRefresh();
     }
 
     ExitApplication( 0 );

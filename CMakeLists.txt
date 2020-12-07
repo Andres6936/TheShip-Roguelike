@@ -1,6 +1,15 @@
 Cmake_Minimum_Required(VERSION 3.8)
 Project(TheShip C)
-LINK_DIRECTORIES(${CMAKE_SOURCE_DIR}/Lib)
+
+# Content Package Manager
+INCLUDE(CMakeModules/CPM.cmake)
+
+CPMAddPackage(
+        NAME BearLibTerminal
+        VERSION 2020.12
+        GITHUB_REPOSITORY Andres6936/BearLibTerminal
+)
+
 Add_Executable(TheShip
         Source/Main.c
         Source/Logger.c
@@ -14,4 +23,4 @@ Add_Executable(TheShip
         Source/Event.c)
 
 # Load and link the library BearLibTerminal
-Target_Link_Libraries(TheShip BearLibTerminal)
+Target_Link_Libraries(TheShip PRIVATE BearLibTerminal)

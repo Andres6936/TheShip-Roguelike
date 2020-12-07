@@ -21,7 +21,7 @@ void ShowMainScreen( );
  *
  * @note This method assumes that size of terminal is 80x25 or more.
  *
- * @code In C99: terminal_set("terminal: encoding=437")
+ * @code In C99: TerminalSet("terminal: encoding=437")
  */
 void ShowBorderLine();
 
